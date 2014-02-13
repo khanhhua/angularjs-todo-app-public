@@ -41,8 +41,32 @@ module.exports = function(grunt) {
           './js/*.js'
         ]
       }
+    },
+    jasmine : {
+        src : [
+          'js/vendor/jquery-1.11.0.min.js',
+          'js/vendor/bootstrap.min.js',
+          'js/vendor/angular/angular.min.js',
+          'js/vendor/angular-mocks/angular-mocks.js',
+          'js/*.js'
+        ],
+        options : {
+          specs : 'test/specs/**/*Spec.js'
+        }
+    },
+    karma: {
+      unit: {
+        options: {
+          files: ['test/**/*.js'],
+          singleRun: true,
+          browsers: ['Chrome']
+        }
+      }
     }
   });
+  
+  grunt.loadNpmTasks('grunt-contrib-jasmine');
+  grunt.loadNpmTasks('grunt-karma');
   grunt.loadNpmTasks('connect-livereload');
   grunt.loadNpmTasks('grunt-contrib-connect');
   grunt.loadNpmTasks('grunt-contrib-watch');
@@ -52,4 +76,7 @@ module.exports = function(grunt) {
       'connect:livereload',
       'watch']) // THIS SHALL KEEP THE SERVER OPEN
   });
+
+  grunt.registerTask('unit', ['jasmine']);
+  grunt.registerTask('e2e', ['karma']);
 }

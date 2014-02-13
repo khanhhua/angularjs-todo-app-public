@@ -13,4 +13,8 @@ angular.module('todoApp', []).
         {task:'Install optional packages', due: 'Jan 10'},
         {task:'Install PyCharm', due: 'Jan 13'},
       ];
+
+      $scope.todoList.sort(function(a,b) {
+          return a.due > b.due;
+      });
     }])

@@ -14,7 +14,7 @@
         <link rel="stylesheet" href="css/main.css">
         <script src="js/vendor/modernizr-2.7.1.min.js"></script>
     </head>
-    <body>
+    <body ng-app="todoApp" ng-controller="todoMainCtrl">
         <!--[if lt IE 8]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="http://browsehappy.com/">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
@@ -93,79 +93,13 @@
                             <th>Due</th>
                         </thead>
                         <tbody>
-                            <tr>
+                            <tr ng-repeat="item in todoList">
                                 <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="danger">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="warning">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="danger">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="warning">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr>
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="danger">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
-                            </tr>
-                            <tr class="warning">
-                                <td><input type="checkbox" /></td>
-                                <td>Park the bike</td>
-                                <td>8PM</td>
+                                <td>{{item.task}}</td>
+                                <td>{{item.due}}</td>
                             </tr>
                         </tbody>
                     </table>
-                    <div class="text-center">
-                        <ul class="pagination">
-                            <li><a href="#">&laquo;</a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#">4</a></li>
-                            <li><a href="#">5</a></li>
-                            <li><a href="#">&raquo;</a></li>
-                        </ul>
-                    </div>
                 </div>
                 <div class="col-md-2">
                     <h4>Sched Metrics</h4>
@@ -297,6 +231,9 @@
         <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
         <script src="js/plugins.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
+
+        <script src="js/vendor/angular/angular.js"></script>        
+
         <script src="js/app.js"></script>
     </body>
 </html>

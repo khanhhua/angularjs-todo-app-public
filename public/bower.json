@@ -21,6 +21,7 @@
   ],
   "dependencies": {
     "angular": "~1.2.12",
+    "angular-cookies": "~1.2.12",
     "jquery": "~2.1.0"
   }
 }

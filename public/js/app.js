@@ -3,8 +3,8 @@
 *
 * The main module for this TODO app
 */
-angular.module('todoApp', []).
-    controller('todoMainCtrl',['$scope', function($scope) {
+angular.module('todoApp', ['ngCookies']).
+    controller('todoMainCtrl',['$cookieStore','$scope', function($cookieStore, $scope) {
       var today = '2014-03-10';
       // todoList array
       $scope.todoList = [
@@ -47,7 +47,7 @@ angular.module('todoApp', []).
         }
         else if (todoItem.prev_status)
           todoItem.status = todoItem.prev_status;
-      }
+      };
 
       $scope.newItem = {};
       $scope.addItem = function(){
@@ -61,7 +61,23 @@ angular.module('todoApp', []).
         $scope.todoList.sort(function(a,b) {
           return a.due > b.due;
         });
-      }
+      };
+
+      $scope.username = 'Guest';
+      $scope.signIn = function() {
+        // Sign In: simplest authentication
+        if ($scope.credential.name === $scope.credential.password) {
+          // Username and Gravatar are displayed in place of "Guest"
+          $scope.username = $scope.credential.name;
+          // User is logged in: A cookie is created to keep track of user
+          $cookieStore.put('username', $scope.credential.name);
+          if ($scope.credential.remember) {
+            $cookieStore.put('remember', $scope.credential.name + ':TOKEN');
+          }
+          // Sign-in dialog must be closed
+          angular.element('#modalSignIn').modal('hide');
+        }
+      };
 
       $scope.todoList.sort(function(a,b) {
           return a.due > b.due;

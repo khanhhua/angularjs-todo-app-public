@@ -45,8 +45,10 @@
                     </button>
                     <h4>Top List</h4>
                     <ul class="nav nav-pills nav-stacked">
-                        <li class="active"><a href="#">Workplace</a></li>
-                        <li><a href="#">Homeplace</a></li>
+                        <!-- Enable deep linking with href="#item.id" -->
+                        <li ng-repeat="item in categoryList" ng-class="{active: item.id==selectedCategory}">
+                            <a href="#{{item.id}}" ng-click="selectCategory(item.id)">{{item.name}}</a>
+                        </li>
                     </ul>
                     <h5>Archive</h5>
                     <ul class="nav nav-stacked">
@@ -93,10 +95,10 @@
                             <th>Due</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in todoList">
-                                <td><input type="checkbox" /></td>
+                            <tr ng-repeat="item in todoList | filter:{cat:selectedCategory}">
+                                <td><input type="checkbox" ng-click="update(item)" /></td>
                                 <td>{{item.task}}</td>
-                                <td>{{item.due}}</td>
+                                <td>{{item.due | date: 'MMM-dd'}}</td>
                             </tr>
                         </tbody>
                     </table>
@@ -136,15 +138,15 @@
                         <form role="form">
                             <div class="form-group">
                                 <label for="task">Task</label>
-                                <input type="text" class="form-control" id="task" placeholder="Enter task description" />
+                                <input ng-model="newItem.task" type="text" class="form-control" id="task" placeholder="Enter task description" />
                             </div>
                             <div class="form-group">
                                 <label for="due">When is it due?</label>
-                                <input type="date" class="form-control" id="due" placeholder="Date format MM/dd/YYYY" />
+                                <input ng-model="newItem.due"  type="date" class="form-control" id="due" placeholder="Date format MM/dd/YYYY" />
                             </div>
                             <div class="form-group">
                                 <label for="due">Category</label>
-                                <select class="form-control" id="due" data-placeholder="Select a category">
+                                <select ng-model="newItem.category"  class="form-control" id="due" data-placeholder="Select a category">
                                     <option value="workplace">Workplace</option>
                                     <option value="homeplace">Homeplace</option>
                                 </select>
@@ -153,25 +155,25 @@
                                 <label for="exampleInputFile">Status</label>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios1" value="option1" checked>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios1" ng-model="newItem.status" value="unplanned" checked>
                                         Unplanned
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios2" value="option1" checked>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios2" ng-model="newItem.status" value="planned">
                                         Planned
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios3" value="option1" checked>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios3" ng-model="newItem.status" value="in_progress">
                                         In Progress
                                     </label>
                                 </div>
                                 <div class="radio">
                                     <label>
-                                        <input type="radio" name="optionsRadios" id="optionsRadios4" value="option1" checked>
+                                        <input type="radio" name="optionsRadios" id="optionsRadios4"  ng-model="newItem.status" value="done">
                                         Done
                                     </label>
                                 </div>
@@ -180,7 +182,7 @@
                     </div>
                     <div class="modal-footer">
                         <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-                        <button type="button" class="btn btn-primary">Add Task</button>
+                        <button type="button" class="btn btn-primary" ng-click="addItem()">Add Task</button>
                     </div>
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
@@ -227,8 +229,7 @@
                 </div><!-- /.modal-content -->
             </div><!-- /.modal-dialog -->
         </div><!-- /.modal -->
-        <script src="//ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>
-        <script>window.jQuery || document.write('<script src="js/vendor/jquery-1.11.0.min.js"><\/script>')</script>
+        <script src="js/vendor/jquery-1.11.0.min.js"></script>
         <script src="js/plugins.js"></script>
         <script src="js/vendor/bootstrap.js"></script>
 

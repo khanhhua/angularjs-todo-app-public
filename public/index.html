@@ -95,7 +95,7 @@
                             <th>Due</th>
                         </thead>
                         <tbody>
-                            <tr ng-repeat="item in todoList | filter:{cat:selectedCategory}" ng-class="{done:item.status=='done'}">
+                            <tr ng-repeat="item in todoList | filter:todoVisibleFilterFunction" ng-class="{done:item.status=='done'}">
                                 <td><input type="checkbox" ng-click="done(item)" /></td>
                                 <td>{{item.task}}</td>
                                 <td>{{item.due | date: 'MMM-dd'}}</td>

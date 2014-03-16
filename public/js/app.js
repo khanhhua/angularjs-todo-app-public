@@ -5,6 +5,7 @@
 */
 angular.module('todoApp', []).
     controller('todoMainCtrl',['$scope', function($scope) {
+      var today = '2014-03-10';
       // todoList array
       $scope.todoList = [
         {cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
@@ -22,6 +23,15 @@ angular.module('todoApp', []).
         {id:'workplace', name: 'Workplace'},
         {id:'homeplace', name: 'Homeplace'}
       ];
+
+      $scope.todoVisibleFilterFunction = function(item) {
+        // Feature: Update status of listed items using the checkbox
+        // Post-conditions:
+        // - Tasks due today and later must always be visible regardless of its status
+        // - Overdue tasks which are done must not be visible
+        return item.cat == $scope.selectedCategory 
+            && (item.due >= today || item.status !== 'done');
+      };
 
       $scope.selectedCategory = 'workplace';
       $scope.selectCategory = function(categoryId) {

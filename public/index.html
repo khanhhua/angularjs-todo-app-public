@@ -106,20 +106,20 @@
                 <div class="col-md-2">
                     <h4>Sched Metrics</h4>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 60%;">
-                            <span class="sr-only">60% Complete</span>
+                        <div class="progress-bar progress-bar-success" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{width: sched_heath.done() + '%'}">
+                            <span class="sr-only">{{sched_heath.done()}}% Complete</span>
                             <span>DONE</span>
                         </div>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 80%;">
-                            <span class="sr-only">80% Deadline</span>
+                        <div class="progress-bar progress-bar-warning" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{width: sched_heath.deadline() + '%'}">
+                            <span class="sr-only">{{sched_heath.deadline()}}% Deadline</span>
                             <span>Deadline</span>
                         </div>
                     </div>
                     <div class="progress">
-                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" style="width: 20%;">
-                            <span class="sr-only">20% Overdue</span>
+                        <div class="progress-bar progress-bar-danger" role="progressbar" aria-valuenow="60" aria-valuemin="0" aria-valuemax="100" ng-style="{width: sched_heath.overdue() + '%'}">
+                            <span class="sr-only">{{sched_heath.overdue()}}% Overdue</span>
                             <span>Overdue</span>
                         </div>
                     </div>

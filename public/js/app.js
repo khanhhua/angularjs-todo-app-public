@@ -4,7 +4,7 @@
 * The main module for this TODO app
 */
 angular.module('todoApp', ['ngCookies']).
-    controller('todoMainCtrl',['$cookieStore','$scope', function($cookieStore, $scope) {
+    controller('todoMainCtrl',['$cookieStore','$filter','$scope', function($cookieStore,$filter, $scope) {
       var today = '2014-03-10';
       // todoList array
       $scope.todoList = [
@@ -82,4 +82,33 @@ angular.module('todoApp', ['ngCookies']).
       $scope.todoList.sort(function(a,b) {
           return a.due > b.due;
       });
-    }])
+      // SCHED HEALTH
+      // Keep Sched Metrics updated
+      $scope.sched_heath = {
+        done: function() {
+          // DONE: Any done tasks are classified into this group (whether they are overdue or on time)
+          return ($filter('filter')($scope.todoList, 
+            function(item) { 
+                return item.status==='done';
+            }).length / $scope.todoList.length) * 100;
+        },
+        deadline: function () {
+          // Deadline: Tasks whose deadlines are coming within the next 7 days. 
+          // These tasks are not done.
+          var today_stamp = Date.parse(today);
+          var seven_days_millis = 7 * 24 * 3600 * 1000;
+          return ($filter('filter')($scope.todoList, 
+            function(item) {
+                var due_stamp = Date.parse(item.due);
+                return item.status!=='done' && today_stamp - due_stamp  < seven_days_millis;
+            }).length / $scope.todoList.length) * 100;
+        },
+        overdue: function () {
+          // Overdue: Undone tasks whose deadlines are already in the past.
+          return ($filter('filter')($scope.todoList, 
+            function(item) { 
+                return item.status!=='done' && item.due < today;
+            }).length / $scope.todoList.length) * 100;
+        }
+      };
+    }]);

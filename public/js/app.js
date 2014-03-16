@@ -49,6 +49,20 @@ angular.module('todoApp', []).
           todoItem.status = todoItem.prev_status;
       }
 
+      $scope.newItem = {};
+      $scope.addItem = function(){
+        // TODO: Fix this error
+        // Error: [ngRepeat:dupes] Duplicates in a repeater are not allowed.
+        // Use 'track by' expression to specify unique keys.
+        // Repeater: item in todoList | filter:todoVisibleFilterFunction, Duplicate key: object:00I
+        $scope.todoList.push($scope.newItem);
+
+        // Task list items must retain the correct order of increasing due date
+        $scope.todoList.sort(function(a,b) {
+          return a.due > b.due;
+        });
+      }
+
       $scope.todoList.sort(function(a,b) {
           return a.due > b.due;
       });

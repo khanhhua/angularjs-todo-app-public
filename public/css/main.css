@@ -94,19 +94,13 @@ body, .modal {
     overflow: overlay;
 }
 
+.table-todo {
 
+}
 
-
-
-
-
-
-
-
-
-
-
-
+.table-todo tr.done {
+    text-decoration: line-through;
+}
 
 
 /* ==========================================================================

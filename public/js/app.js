@@ -6,7 +6,6 @@
 angular.module('todoApp', ['ngCookies']).
     controller('todoMainCtrl',['$cookieStore','$filter','$scope', function($cookieStore,$filter, $scope) {
       var today = '2014-03-10';
-
       // todoList array
       var active = {
         'task-108': {id: 'task-108', cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
@@ -25,36 +24,36 @@ angular.module('todoApp', ['ngCookies']).
       $scope.archive = {
           '2013': {
             12:{
-                'task-098':{id: 'task-098', cat:'workplace', task:'Buy an SSD', due: '2014-12-01', status: 'unplanned'},
-                'task-097':{id: 'task-097', cat:'workplace', task:'Partition the drive', due: '2014-12-04', status: 'unplanned'},
-                'task-096':{id: 'task-096', cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-12-09', status: 'unplanned'}
+                'task-098':{id: 'task-098', cat:'workplace', task:'Buy an SSD', due: '2014-12-01', status: 'done'},
+                'task-097':{id: 'task-097', cat:'workplace', task:'Partition the drive', due: '2014-12-04', status: 'done'},
+                'task-096':{id: 'task-096', cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-12-09', status: 'done'}
             },
             11:{
-                'task-095':{id: 'task-095', cat:'workplace', task:'Install PyCharm', due: '2014-11-03', status: 'unplanned'},
-                'task-094':{id: 'task-094', cat:'homeplace', task:'Clean the floor', due: '2014-11-06', status: 'unplanned'},
-                'task-093':{id: 'task-093', cat:'homeplace', task:'Cook dinner', due: '2014-11-10', status: 'unplanned'}
+                'task-095':{id: 'task-095', cat:'workplace', task:'Install PyCharm', due: '2014-11-03', status: 'done'},
+                'task-094':{id: 'task-094', cat:'homeplace', task:'Clean the floor', due: '2014-11-06', status: 'done'},
+                'task-093':{id: 'task-093', cat:'homeplace', task:'Cook dinner', due: '2014-11-10', status: 'done'}
             },
             10: {
-                'task-092':{id: 'task-092', cat:'homeplace', task:'Clean the floor', due: '2014-10-06', status: 'unplanned'},
-                'task-091':{id: 'task-091', cat:'homeplace', task:'Cook dinner', due: '2014-10-10', status: 'unplanned'},
-                'task-090':{id: 'task-090', cat:'homeplace', task:'Make the bed', due: '2014-10-30', status: 'unplanned'}
+                'task-092':{id: 'task-092', cat:'homeplace', task:'Clean the floor', due: '2014-10-06', status: 'done'},
+                'task-091':{id: 'task-091', cat:'homeplace', task:'Cook dinner', due: '2014-10-10', status: 'done'},
+                'task-090':{id: 'task-090', cat:'homeplace', task:'Make the bed', due: '2014-10-30', status: 'done'}
             }
           },
           '2012': {
             12:{
-                'task-088':{id: 'task-088', cat:'workplace', task:'Buy an SSD', due: '2012-12-01', status: 'unplanned'},
-                'task-087':{id: 'task-087', cat:'workplace', task:'Partition the drive', due: '2012-12-04', status: 'unplanned'},
-                'task-086':{id: 'task-086', cat:'workplace', task:'Install Ubuntu and Windows', due: '2013-12-09', status: 'unplanned'}
+                'task-088':{id: 'task-088', cat:'workplace', task:'Buy an SSD', due: '2012-12-01', status: 'done'},
+                'task-087':{id: 'task-087', cat:'workplace', task:'Partition the drive', due: '2012-12-04', status: 'done'},
+                'task-086':{id: 'task-086', cat:'workplace', task:'Install Ubuntu and Windows', due: '2013-12-09', status: 'done'}
             },
             10:{
-                'task-085':{id: 'task-085', cat:'workplace', task:'Install PyCharm', due: '2012-10-03', status: 'unplanned'},
-                'task-084':{id: 'task-084', cat:'homeplace', task:'Clean the floor', due: '2012-10-06', status: 'unplanned'},
-                'task-083':{id: 'task-083', cat:'homeplace', task:'Cook dinner', due: '2012-10-10', status: 'unplanned'}
+                'task-085':{id: 'task-085', cat:'workplace', task:'Install PyCharm', due: '2012-10-03', status: 'done'},
+                'task-084':{id: 'task-084', cat:'homeplace', task:'Clean the floor', due: '2012-10-06', status: 'done'},
+                'task-083':{id: 'task-083', cat:'homeplace', task:'Cook dinner', due: '2012-10-10', status: 'done'}
             },
             9: {
-                'task-082':{id: 'task-082', cat:'homeplace', task:'Clean the floor', due: '2012-09-06', status: 'unplanned'},
-                'task-081':{id: 'task-081', cat:'homeplace', task:'Cook dinner', due: '2012-09-10', status: 'unplanned'},
-                'task-080':{id: 'task-080', cat:'homeplace', task:'Make the bed', due: '2012-09-30', status: 'unplanned'}
+                'task-082':{id: 'task-082', cat:'homeplace', task:'Clean the floor', due: '2012-09-06', status: 'done'},
+                'task-081':{id: 'task-081', cat:'homeplace', task:'Cook dinner', due: '2012-09-10', status: 'done'},
+                'task-080':{id: 'task-080', cat:'homeplace', task:'Make the bed', due: '2012-09-30', status: 'done'}
             }
           }
       }

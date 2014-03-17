@@ -8,54 +8,54 @@ angular.module('todoApp', ['ngCookies']).
       var today = '2014-03-10';
 
       // todoList array
-      var active = [
-        {cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
-        {cat:'workplace', task:'Partition the drive', due: '2014-01-04', status: 'unplanned'},
-        {cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-02-09', status: 'unplanned'},
-        {cat:'workplace', task:'Install optional packages', due: '2014-03-10', status: 'unplanned'},
-        {cat:'workplace', task:'Install PyCharm', due: '2014-02-03', status: 'unplanned'},
-        {cat:'homeplace', task:'Clean the floor', due: '2014-03-06', status: 'unplanned'},
-        {cat:'homeplace', task:'Cook dinner', due: '2014-03-10', status: 'unplanned'},
-        {cat:'homeplace', task:'Make the bed', due: '2014-03-30', status: 'unplanned'}
-      ];
+      var active = {
+        'task-108': {id: 'task-108', cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
+        'task-107': {id: 'task-107', cat:'workplace', task:'Partition the drive', due: '2014-01-04', status: 'unplanned'},
+        'task-106': {id: 'task-106', cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-02-09', status: 'unplanned'},
+        'task-105': {id: 'task-105', cat:'workplace', task:'Install optional packages', due: '2014-03-10', status: 'unplanned'},
+        'task-104': {id: 'task-104', cat:'workplace', task:'Install PyCharm', due: '2014-02-03', status: 'unplanned'},
+        'task-103': {id: 'task-103', cat:'homeplace', task:'Clean the floor', due: '2014-03-06', status: 'unplanned'},
+        'task-102': {id: 'task-102', cat:'homeplace', task:'Cook dinner', due: '2014-03-10', status: 'unplanned'},
+        'task-101': {id: 'task-101', cat:'homeplace', task:'Make the bed', due: '2014-03-30', status: 'unplanned'}
+      };
 
       $scope.todoList = active;
 
       // archive array
       $scope.archive = {
           '2013': {
-            12:[
-                {cat:'workplace', task:'Buy an SSD', due: '2014-12-01', status: 'unplanned'},
-                {cat:'workplace', task:'Partition the drive', due: '2014-12-04', status: 'unplanned'},
-                {cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-12-09', status: 'unplanned'}
-            ],
-            11:[
-                {cat:'workplace', task:'Install PyCharm', due: '2014-11-03', status: 'unplanned'},
-                {cat:'homeplace', task:'Clean the floor', due: '2014-11-06', status: 'unplanned'},
-                {cat:'homeplace', task:'Cook dinner', due: '2014-11-10', status: 'unplanned'}
-            ],
-            10: [
-                {cat:'homeplace', task:'Clean the floor', due: '2014-10-06', status: 'unplanned'},
-                {cat:'homeplace', task:'Cook dinner', due: '2014-10-10', status: 'unplanned'},
-                {cat:'homeplace', task:'Make the bed', due: '2014-10-30', status: 'unplanned'}
-            ]
+            12:{
+                'task-098':{id: 'task-098', cat:'workplace', task:'Buy an SSD', due: '2014-12-01', status: 'unplanned'},
+                'task-097':{id: 'task-097', cat:'workplace', task:'Partition the drive', due: '2014-12-04', status: 'unplanned'},
+                'task-096':{id: 'task-096', cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-12-09', status: 'unplanned'}
+            },
+            11:{
+                'task-095':{id: 'task-095', cat:'workplace', task:'Install PyCharm', due: '2014-11-03', status: 'unplanned'},
+                'task-094':{id: 'task-094', cat:'homeplace', task:'Clean the floor', due: '2014-11-06', status: 'unplanned'},
+                'task-093':{id: 'task-093', cat:'homeplace', task:'Cook dinner', due: '2014-11-10', status: 'unplanned'}
+            },
+            10: {
+                'task-092':{id: 'task-092', cat:'homeplace', task:'Clean the floor', due: '2014-10-06', status: 'unplanned'},
+                'task-091':{id: 'task-091', cat:'homeplace', task:'Cook dinner', due: '2014-10-10', status: 'unplanned'},
+                'task-090':{id: 'task-090', cat:'homeplace', task:'Make the bed', due: '2014-10-30', status: 'unplanned'}
+            }
           },
           '2012': {
-            12:[
-                {cat:'workplace', task:'Buy an SSD', due: '2012-12-01', status: 'unplanned'},
-                {cat:'workplace', task:'Partition the drive', due: '2012-12-04', status: 'unplanned'},
-                {cat:'workplace', task:'Install Ubuntu and Windows', due: '2013-12-09', status: 'unplanned'}
-            ],
-            10:[
-                {cat:'workplace', task:'Install PyCharm', due: '2012-10-03', status: 'unplanned'},
-                {cat:'homeplace', task:'Clean the floor', due: '2012-10-06', status: 'unplanned'},
-                {cat:'homeplace', task:'Cook dinner', due: '2012-10-10', status: 'unplanned'}
-            ],
-            9: [
-                {cat:'homeplace', task:'Clean the floor', due: '2012-09-06', status: 'unplanned'},
-                {cat:'homeplace', task:'Cook dinner', due: '2012-09-10', status: 'unplanned'},
-                {cat:'homeplace', task:'Make the bed', due: '2012-09-30', status: 'unplanned'}
-            ]
+            12:{
+                'task-088':{id: 'task-088', cat:'workplace', task:'Buy an SSD', due: '2012-12-01', status: 'unplanned'},
+                'task-087':{id: 'task-087', cat:'workplace', task:'Partition the drive', due: '2012-12-04', status: 'unplanned'},
+                'task-086':{id: 'task-086', cat:'workplace', task:'Install Ubuntu and Windows', due: '2013-12-09', status: 'unplanned'}
+            },
+            10:{
+                'task-085':{id: 'task-085', cat:'workplace', task:'Install PyCharm', due: '2012-10-03', status: 'unplanned'},
+                'task-084':{id: 'task-084', cat:'homeplace', task:'Clean the floor', due: '2012-10-06', status: 'unplanned'},
+                'task-083':{id: 'task-083', cat:'homeplace', task:'Cook dinner', due: '2012-10-10', status: 'unplanned'}
+            },
+            9: {
+                'task-082':{id: 'task-082', cat:'homeplace', task:'Clean the floor', due: '2012-09-06', status: 'unplanned'},
+                'task-081':{id: 'task-081', cat:'homeplace', task:'Cook dinner', due: '2012-09-10', status: 'unplanned'},
+                'task-080':{id: 'task-080', cat:'homeplace', task:'Make the bed', due: '2012-09-30', status: 'unplanned'}
+            }
           }
       }
 
@@ -86,9 +86,29 @@ angular.module('todoApp', ['ngCookies']).
       $scope.done = function(todoItem) {
       // prev_status helps revert todoItem status
       // TODO: update the requirement!
+        var prev_month_last_day = new Date(today);
+        prev_month_last_day.setMonth(prev_month_last_day.getMonth()==0?11:prev_month_last_day.getMonth()-1);
+        if (prev_month_last_day.getMonth()!==1) // Not February
+          prev_month_last_day.setDate(30);
+        else
+          prev_month_last_day.setDate(28);
+
         if (todoItem.status !== 'done') {
           todoItem.prev_status = todoItem.status;
           todoItem.status = 'done';
+          // Move item to archive
+          var date = new Date(todoItem.due);
+          if (date <= prev_month_last_day) {
+            delete active[todoItem.id]; // Remove from active list
+
+            var month = date.getMonth() + 1;
+            var year = date.getUTCFullYear();
+            if (!(year in $scope.archive))
+              $scope.archive[year] = {};
+            if (!(month in $scope.archive[year]))
+              $scope.archive[year][month] = {};
+            $scope.archive[year][month][todoItem.id] = todoItem;
+          }
         }
         else if (todoItem.prev_status)
           todoItem.status = todoItem.prev_status;
@@ -102,10 +122,6 @@ angular.module('todoApp', ['ngCookies']).
         $scope.newItem = {};
         // Add new task dialog must be closed
         angular.element('#modalNewTask').modal('hide');
-        // Task list items must retain the correct order of increasing due date
-        $scope.todoList.sort(function(a,b) {
-          return a.due > b.due;
-        });
       };
 
       $scope.username = 'Guest';
@@ -124,9 +140,6 @@ angular.module('todoApp', ['ngCookies']).
         }
       };
 
-      $scope.todoList.sort(function(a,b) {
-          return a.due > b.due;
-      });
       // SCHED HEALTH
       // Keep Sched Metrics updated
       $scope.sched_heath = {

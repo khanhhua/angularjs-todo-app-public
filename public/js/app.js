@@ -144,33 +144,38 @@ angular.module('todoApp', ['ngCookies']).
       // Keep Sched Metrics updated
       $scope.sched_heath = {
         done: function() {
+          var active_array = $filter('array')(active);
           // DONE: Any done tasks are classified into this group (whether they are overdue or on time)
-          return ($filter('filter')($scope.todoList, 
+          return ($filter('filter')(active_array,
             function(item) { 
                 return item.status==='done';
-            }).length / $scope.todoList.length) * 100;
+            }).length / active_array.length) * 100;
         },
         deadline: function () {
+          var active_array = $filter('array')(active);
           // Deadline: Tasks whose deadlines are coming within the next 7 days. 
           // These tasks are not done.
+
           var today_stamp = Date.parse(today);
           var seven_days_millis = 7 * 24 * 3600 * 1000;
-          return ($filter('filter')($scope.todoList, 
+          return ($filter('filter')(active_array,
             function(item) {
                 var due_stamp = Date.parse(item.due);
                 return item.status!=='done' && today_stamp - due_stamp  < seven_days_millis;
-            }).length / $scope.todoList.length) * 100;
+            }).length / active_array.length) * 100;
         },
         overdue: function () {
+          var active_array = $filter('array')(active);
           // Overdue: Undone tasks whose deadlines are already in the past.
-          return ($filter('filter')($scope.todoList, 
+
+          return ($filter('filter')(active_array,
             function(item) { 
                 return item.status!=='done' && item.due < today;
-            }).length / $scope.todoList.length) * 100;
+            }).length / active_array.length) * 100;
         }
       };
-    }]).
-    filter('stringify', function(){
+    }])
+    .filter('stringify', function(){
       // Transform numeric MONTH to textual MONTH
         var month_names = [
           null, 'January', 'February', 'March', 'April', 
@@ -183,4 +188,13 @@ angular.module('todoApp', ['ngCookies']).
             return input;
           }
         };
+    })
+    .filter('array', function(){
+      return function(obj) {
+          var ret = [];
+          for(key in obj)
+            ret.push(obj[key]);
+
+          return ret;
+      };
     });

@@ -52,34 +52,15 @@
                     </ul>
                     <h5>Archive</h5>
                     <ul class="nav nav-stacked">
-                        <li>
+                        <li ng-repeat="(year, year_items) in archive">
                             <p>
-                                <a href="#" class="glyphicon glyphicon-folder-open"> 2014</a>
+                                <a href="#" class="glyphicon glyphicon-folder-open"> {{year}}</a>
                                 <span class="badge pull-right">30</span>
                             </p>
                             <ul>
-                                <li><a href="#">December</a></li>
-                                <li><a href="#">November</a></li>
-                                <li><a href="#">October</a></li>
-                                <li><a href="#">September</a></li>
-                                <li><a href="#">May</a></li>
-                                <li><a href="#">April</a></li>
-                                <li><a href="#">March</a></li>
-                                <li><a href="#">January</a></li>
+                                <li ng-repeat="(month, value) in year_items" ng-click="selectArchive(year, month)"><a href="#!archive/{{year}}-{{month}}"> {{month | stringify}}</a></li>
                             </ul>
-                        </li>
-                        <li>
-                            <p>
-                                <a href="#" class="glyphicon glyphicon-folder-close"> 2013</a>
-                                <span class="badge pull-right">20</span>
-                            </p>                            
-                            <ul>
-                                <li><a href="#">December</a></li>
-                                <li><a href="#">November</a></li>
-                                <li><a href="#">October</a></li>
-                                <li><a href="#">September</a></li>
-                            </ul>
-                        </li>
+                        </li>                        
                     </ul>
                 </div>
                 <div class="col-md-8">

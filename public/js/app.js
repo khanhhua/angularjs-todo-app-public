@@ -6,8 +6,9 @@
 angular.module('todoApp', ['ngCookies']).
     controller('todoMainCtrl',['$cookieStore','$filter','$scope', function($cookieStore,$filter, $scope) {
       var today = '2014-03-10';
+
       // todoList array
-      $scope.todoList = [
+      var active = [
         {cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
         {cat:'workplace', task:'Partition the drive', due: '2014-01-04', status: 'unplanned'},
         {cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-02-09', status: 'unplanned'},
@@ -17,6 +18,46 @@ angular.module('todoApp', ['ngCookies']).
         {cat:'homeplace', task:'Cook dinner', due: '2014-03-10', status: 'unplanned'},
         {cat:'homeplace', task:'Make the bed', due: '2014-03-30', status: 'unplanned'}
       ];
+
+      $scope.todoList = active;
+
+      // archive array
+      $scope.archive = {
+          '2013': {
+            12:[
+                {cat:'workplace', task:'Buy an SSD', due: '2014-12-01', status: 'unplanned'},
+                {cat:'workplace', task:'Partition the drive', due: '2014-12-04', status: 'unplanned'},
+                {cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-12-09', status: 'unplanned'}
+            ],
+            11:[
+                {cat:'workplace', task:'Install PyCharm', due: '2014-11-03', status: 'unplanned'},
+                {cat:'homeplace', task:'Clean the floor', due: '2014-11-06', status: 'unplanned'},
+                {cat:'homeplace', task:'Cook dinner', due: '2014-11-10', status: 'unplanned'}
+            ],
+            10: [
+                {cat:'homeplace', task:'Clean the floor', due: '2014-10-06', status: 'unplanned'},
+                {cat:'homeplace', task:'Cook dinner', due: '2014-10-10', status: 'unplanned'},
+                {cat:'homeplace', task:'Make the bed', due: '2014-10-30', status: 'unplanned'}
+            ]
+          },
+          '2012': {
+            12:[
+                {cat:'workplace', task:'Buy an SSD', due: '2012-12-01', status: 'unplanned'},
+                {cat:'workplace', task:'Partition the drive', due: '2012-12-04', status: 'unplanned'},
+                {cat:'workplace', task:'Install Ubuntu and Windows', due: '2013-12-09', status: 'unplanned'}
+            ],
+            10:[
+                {cat:'workplace', task:'Install PyCharm', due: '2012-10-03', status: 'unplanned'},
+                {cat:'homeplace', task:'Clean the floor', due: '2012-10-06', status: 'unplanned'},
+                {cat:'homeplace', task:'Cook dinner', due: '2012-10-10', status: 'unplanned'}
+            ],
+            9: [
+                {cat:'homeplace', task:'Clean the floor', due: '2012-09-06', status: 'unplanned'},
+                {cat:'homeplace', task:'Cook dinner', due: '2012-09-10', status: 'unplanned'},
+                {cat:'homeplace', task:'Make the bed', due: '2012-09-30', status: 'unplanned'}
+            ]
+          }
+      }
 
       // Category
       $scope.categoryList = [
@@ -36,6 +77,10 @@ angular.module('todoApp', ['ngCookies']).
       $scope.selectedCategory = 'workplace';
       $scope.selectCategory = function(categoryId) {
         $scope.selectedCategory = categoryId;
+      };
+
+      $scope.selectArchive = function(year, month) {
+        $scope.todoList = $scope.archive[year][month];
       };
 
       $scope.done = function(todoItem) {
@@ -111,4 +156,18 @@ angular.module('todoApp', ['ngCookies']).
             }).length / $scope.todoList.length) * 100;
         }
       };
-    }]);
+    }]).
+    filter('stringify', function(){
+      // Transform numeric MONTH to textual MONTH
+        var month_names = [
+          null, 'January', 'February', 'March', 'April', 
+                'May', 'June', 'July', 'August', 
+                'September', 'October', 'November', 'December'];
+        return function(input) {
+          try {
+            return month_names[parseInt(input)];            
+          } catch(e) {
+            return input;
+          }
+        };
+    });

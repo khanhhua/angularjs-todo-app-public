@@ -77,7 +77,7 @@
                         </thead>
                         <tbody>
                             <tr ng-repeat="item in todoList | array | filter:todoVisibleFilterFunction" ng-class="{done:item.status=='done'}">
-                                <td><input type="checkbox" ng-click="done(item)" /></td>
+                                <td><input type="checkbox" ng-checked="item.status=='done'" ng-click="done(item)" /></td>
                                 <td>{{item.task}}</td>
                                 <td>{{item.due | date: 'MMM-dd'}}</td>
                             </tr>

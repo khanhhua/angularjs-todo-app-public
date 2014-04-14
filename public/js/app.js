@@ -98,22 +98,29 @@ angular.module('todoApp', ['ngCookies']).
         if (todoItem.status !== 'done') {
           todoItem.prev_status = todoItem.status;
           todoItem.status = 'done';
-          // Move item to archive
-          var date = new Date(todoItem.due);
-          if (date <= prev_month_last_day) {
-            delete active[todoItem.id]; // Remove from active list
-
-            var month = date.getMonth() + 1;
-            var year = date.getUTCFullYear();
-            if (!(year in $scope.archive))
-              $scope.archive[year] = {};
-            if (!(month in $scope.archive[year]))
-              $scope.archive[year][month] = {};
-            $scope.archive[year][month][todoItem.id] = todoItem;
-          }
         }
         else if (todoItem.prev_status)
           todoItem.status = todoItem.prev_status;
+
+        // Move item to archive
+        var date = new Date(todoItem.due);
+        if (todoItem.status == 'done' && date <= prev_month_last_day) {
+          delete active[todoItem.id]; // Remove from active list
+
+          var month = date.getMonth() + 1;
+          var year = date.getUTCFullYear();
+          if (!(year in $scope.archive))
+            $scope.archive[year] = {};
+          if (!(month in $scope.archive[year]))
+            $scope.archive[year][month] = {};
+          $scope.archive[year][month][todoItem.id] = todoItem;
+        } else {
+          active[todoItem.id] = todoItem;
+
+          var month = date.getMonth() + 1;
+          var year = date.getUTCFullYear();
+          delete $scope.archive[year][month][todoItem.id]; // Remove from archive
+        }
       };
 
       $scope.newItem = {};

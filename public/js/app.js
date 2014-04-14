@@ -155,7 +155,7 @@ angular.module('todoApp', ['ngCookies']).
       // Keep Sched Metrics updated
       $scope.sched_heath = {
         visible: function() {
-          return Object.keys($scope.todoList).length;
+          return Object.keys(active).length;
         },
         done: function() {
           var active_array = $filter('array')(active);

@@ -101,8 +101,10 @@ angular.module('todoApp', ['ngCookies']).
         }
         else if (todoItem.prev_status)
           todoItem.status = todoItem.prev_status;
+        else
+          todoItem.status = 'unplanned';
 
-        // Move item to archive
+          // Move item to archive
         var date = new Date(todoItem.due);
         if (todoItem.status == 'done' && date <= prev_month_last_day) {
           delete active[todoItem.id]; // Remove from active list

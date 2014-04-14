@@ -69,16 +69,19 @@ angular.module('todoApp', ['ngCookies']).
         // Post-conditions:
         // - Tasks due today and later must always be visible regardless of its status
         // - Overdue tasks which are done must not be visible
-        return item.cat == $scope.selectedCategory 
-            && (item.due >= today || item.status !== 'done');
+        return $scope.selectedCategory == 'archive' ||
+            (item.cat == $scope.selectedCategory
+                && (item.due >= today || item.status !== 'done'));
       };
 
       $scope.selectedCategory = 'workplace';
       $scope.selectCategory = function(categoryId) {
         $scope.selectedCategory = categoryId;
+        $scope.todoList = active;
       };
 
       $scope.selectArchive = function(year, month) {
+        $scope.selectedCategory = 'archive';
         $scope.todoList = $scope.archive[year][month];
       };
 

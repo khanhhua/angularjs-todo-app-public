@@ -5,7 +5,7 @@
 */
 angular.module('todoApp', ['ngCookies']).
     controller('todoMainCtrl',['$cookieStore','$filter','$scope', function($cookieStore,$filter, $scope) {
-      var today = '2014-03-10';
+      var today = '2014-04-10';
       // todoList array
       var active = {
         'task-108': {id: 'task-108', cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
@@ -154,6 +154,9 @@ angular.module('todoApp', ['ngCookies']).
       // SCHED HEALTH
       // Keep Sched Metrics updated
       $scope.sched_heath = {
+        visible: function() {
+          return Object.keys($scope.todoList).length;
+        },
         done: function() {
           var active_array = $filter('array')(active);
           // DONE: Any done tasks are classified into this group (whether they are overdue or on time)

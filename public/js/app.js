@@ -5,13 +5,13 @@
 */
 angular.module('todoApp', ['ngCookies']).
     controller('todoMainCtrl',['$cookieStore','$filter','$scope', function($cookieStore,$filter, $scope) {
-      var today = '2014-04-10';
+      var today = '2014-03-10';
       // todoList array
       var active = {
         'task-108': {id: 'task-108', cat:'workplace', task:'Buy an SSD', due: '2014-01-01', status: 'unplanned'},
         'task-107': {id: 'task-107', cat:'workplace', task:'Partition the drive', due: '2014-01-04', status: 'unplanned'},
         'task-106': {id: 'task-106', cat:'workplace', task:'Install Ubuntu and Windows', due: '2014-02-09', status: 'unplanned'},
-        'task-105': {id: 'task-105', cat:'workplace', task:'Install optional packages', due: '2014-03-10', status: 'unplanned'},
+        'task-105': {id: 'task-105', cat:'workplace', task:'Install optional packages', due: '2014-03-10', status: 'done'},
         'task-104': {id: 'task-104', cat:'workplace', task:'Install PyCharm', due: '2014-02-03', status: 'unplanned'},
         'task-103': {id: 'task-103', cat:'homeplace', task:'Clean the floor', due: '2014-03-06', status: 'unplanned'},
         'task-102': {id: 'task-102', cat:'homeplace', task:'Cook dinner', due: '2014-03-10', status: 'unplanned'},
@@ -83,6 +83,10 @@ angular.module('todoApp', ['ngCookies']).
       $scope.selectArchive = function(year, month) {
         $scope.selectedCategory = 'archive';
         $scope.todoList = $scope.archive[year][month];
+      };
+
+      $scope.doneAll = function() {
+
       };
 
       $scope.done = function(todoItem) {
